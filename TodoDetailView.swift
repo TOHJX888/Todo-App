@@ -8,35 +8,24 @@
 import SwiftUI
 
 struct TodoDetailView: View {
+    
     @Binding var todo: Todo
-        
-    
-    
     
     var body: some View {
         Form {
             TextField("Enter your todo name", text: $todo.title)
-            TextField("Enter your additional details", text: $todo.subtitle)
-            Toggle("Is completed?", isOn: $todo.isCompleted)
+            TextField("Enter additional details", text: $todo.subtitle)
+            Toggle("Is done?", isOn: $todo.isDone)
         }
         .navigationTitle("Todo Detail")
-        
-        
-        
-        
-        
-        
-        
-        
-    } //end of var body: some View
-} //end of struct TodoDetailView
-
+    }
+}
 
 struct TodoDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationStack{
+        NavigationStack {
             TodoDetailView(todo:
-                    .constant(Todo(title:"Do up this view", subtitle:"There's nothing here yet"))
+                    .constant(Todo(title: "Do up this view", subtitle: "There's nothing here yet"))
             )
         }
     }
