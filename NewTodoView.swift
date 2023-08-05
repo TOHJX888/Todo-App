@@ -12,6 +12,7 @@ struct NewTodoView: View {
     @Binding var sourceArray: [Todo]
     @State private var todoTitle = ""
     @State private var todoSubtitle = ""
+    @Environment(\.dismiss) var dismiss
     
     
     
@@ -25,10 +26,12 @@ struct NewTodoView: View {
             
             Section("Actions") {
                 Button("Save") {
-                    
+                    let newTodo = Todo(title: todoTitle, subtitle: todoSubtitle)
+                    sourceArray.append(newTodo)
+                    dismiss()
                 }
                 Button("Cancel", role: .destructive) {
-                    
+                    dismiss()
                 }
             }
             

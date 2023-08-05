@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var todos = [
-        Todo(title: "Get NDP tickets", isDone: true),
+        Todo(title: "Get NDP tickets"),
         Todo(title: "Watch NDP videos on YouTube", subtitle: "Definitely watch The Road Ahead"),
         Todo(title: "Figure out transport to NDP"),
         Todo(title: "Get stuck in traffic")
@@ -55,6 +55,7 @@ struct ContentView: View {
             }
             .sheet(isPresented: $showNewTodoSheet) {
                 NewTodoView(sourceArray: $todos)
+                    .presentationDetents([.medium, .large])
             }
         }
     }
