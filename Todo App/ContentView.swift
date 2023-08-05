@@ -21,7 +21,7 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack{
-            List($todos) { $todo in
+            List($todos, editActions: .all) { $todo in
                 NavigationLink {
                     TodoDetailView(todo: $todo)
                 } label: {
@@ -44,6 +44,11 @@ struct ContentView: View {
                 } //end of list
             } //end of navigationstack
             .navigationTitle("Todos")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    EditButton()
+                }
+            }//end of toolbar
             
             
             
