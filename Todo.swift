@@ -9,9 +9,9 @@ import Foundation
 
 struct Todo: Identifiable {
     
-    var id = UUID() // Universally Unique IDentifier
+    var id = UUID()
     var title: String
-    var subtitle = " "
-    var isCompleted = false
+    var subtitle: String = ""
+    var isDone: Bool = false
     
 }

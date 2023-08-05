@@ -15,6 +15,7 @@ struct ContentView: View {
         Todo(title: "Figure out transport to NDP"),
         Todo(title: "Get stuck in traffic")
     ]
+    @State private var showNewTodoSheet = false
     
     var body: some View {
         NavigationStack {
@@ -44,6 +45,16 @@ struct ContentView: View {
                 ToolbarItem(placement: .navigationBarLeading) {
                     EditButton()
                 }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button{
+                        showNewTodoSheet = true
+                    } label: {
+                        Image(systemName: "plus")
+                    }
+                }
+            }
+            .sheet(isPresented: $showNewTodoSheet) {
+                NewTodoView(sourceArray: $todos)
             }
         }
     }
