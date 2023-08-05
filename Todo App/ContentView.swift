@@ -22,27 +22,32 @@ struct ContentView: View {
     var body: some View {
         NavigationStack{
             List($todos) { $todo in
-                HStack{
-                    Image(systemName: todo.isCompleted ? "checkmark.circle.fill" : "circle")
-                        .onTapGesture {
-                            todo.isCompleted.toggle()
-                        }
-                    VStack(alignment: .leading){
-                        Text(todo.title)
-                            .strikethrough(todo.isCompleted)
-                        if !todo.subtitle.isEmpty{
-                            Text(todo.subtitle)
-                                .font(.footnote)
-                                .foregroundColor(.gray)
-                        }
-                    }
-                }
-            }
+                NavigationLink {
+                    TodoDetailView(todo: $todo)
+                } label: {
+                    HStack{
+                        Image(systemName: todo.isCompleted ? "checkmark.circle.fill" : "circle")
+                            .onTapGesture {
+                                todo.isCompleted.toggle()
+                            }
+                        VStack(alignment: .leading){
+                            Text(todo.title)
+                                .strikethrough(todo.isCompleted)
+                            if !todo.subtitle.isEmpty{
+                                Text(todo.subtitle)
+                                    .font(.footnote)
+                                    .foregroundStyle(.gray)
+                            }
+                        } //end of VStack
+                    } //end of hstack
+                }// end of label
+                } //end of list
+            } //end of navigationstack
             .navigationTitle("Todos")
             
             
             
-        } //end of NavigationStack
+        } //end of var body : some view
         
         
         
@@ -50,8 +55,8 @@ struct ContentView: View {
         
         
         
-    } //ending braces
-} //ending braces
+    } //end of struct contentview
+ 
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
